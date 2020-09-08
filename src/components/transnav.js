@@ -1,20 +1,45 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import $ from "jquery"
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, Dropdown, dropdown, NavDropdown  } from 'react-bootstrap';
-import Navbar from 'react-bootstrap/Navbar'
-import './navigationbar.css';
+import { Nav, Navbar, Dropdown, dropdown, NavDropdown  } from 'react-bootstrap';
+// import Navbar from 'react-bootstrap/Navbar'
+import './transnav.css';
 
 
-export default class NavigationBar extends Component {
+export default class TransNavigationBar extends Component {
+
+componentDidMount() {
+
+$(document).ready(function() {
+
+$(window).scroll(function() {    
+    var scroll = $(window).scrollTop();
+
+     //>=, not <=
+    if (scroll >= 610) {
+        //clearHeader, not clearheader - caps H
+        $(".navbar").addClass("test1");
+        $(".navbar-brand").removeClass("test");
+        $(".navbar-brand").addClass("text-white");
+
+    } else {
+      $(".navbar").removeClass("test1");
+      $(".navbar-brand").removeClass("text-white");
+      $(".navbar-brand").addClass("test");
+    }
+}); //missing );
+  
+});
+}
     render() {
         return (
-            <div>
-               
-               <nav class="navbar navbar-expand-lg navbar-light fixed-top test3">
-                 <Navbar expand="lg" bg="" variant='light'>
-                    <a class="navbar-brand test3 text-white" href="#">Cincinnati Lifestyle</a>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <Navbar expand="lg" bg="" variant='light'>
+    <a class="navbar-brand test" href="#">Cincinnati Lifestyle</a>
+    {/* <Navbar.Brand className="text" href="/">Cincinnati Lifestyle</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav " />
                     <Navbar.Collapse id=" mr-auto ">
                         <Nav className="ml-auto ">                                                   
@@ -41,6 +66,8 @@ export default class NavigationBar extends Component {
                     </Navbar.Collapse>
                     </Navbar>
             </nav>
+
+
              
             </div>
         )
